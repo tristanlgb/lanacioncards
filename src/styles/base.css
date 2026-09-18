@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap');
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #182d3e;
+  background: #f0f2f3;
+  font-synthesis: none;
+  font-weight: 400;
+  font-size: 14px;
+  --blue: #0079b5;
+  --navy: #102b45;
+  --muted: #78828b;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+input,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button,
+a {
+  touch-action: manipulation;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  background: none;
+  color: inherit;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #29a8e3;
+  outline-offset: 4px;
+}
+button {
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    color 0.2s;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button:hover {
+  color: var(--blue);
+}

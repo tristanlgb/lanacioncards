@@ -1,0 +1,65 @@
+.market {
+  padding: 20px;
+}
+.widget-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 7px;
+  letter-spacing: 1px;
+  color: #b4c9d9;
+}
+.market .round-icon {
+  background: #ffffff12;
+  color: #7ac5e8;
+  width: 28px;
+  height: 28px;
+}
+.market h2 {
+  font-family: 'Libre Caslon Display', Georgia, serif;
+  font-weight: 400;
+  font-size: 26px;
+  margin: 16px 0 18px;
+}
+.quote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #ffffff16;
+  font-size: 9px;
+  color: #afc2d0;
+}
+.quote strong {
+  font-size: 25px;
+  color: white;
+  font-weight: 400;
+  display: block;
+  margin-top: 5px;
+  letter-spacing: -0.5px;
+}
+.quote strong span {
+  font-size: 15px;
+  color: #d1dce4;
+}
+.change {
+  color: #70c6af;
+  display: flex;
+  font-size: 9px;
+  gap: 3px;
+  align-items: center;
+}
+.market-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 8px;
+  color: #8aa6b9;
+}
+.market-footer button {
+  color: #accce1;
+  display: flex;
+  padding: 0;
+}

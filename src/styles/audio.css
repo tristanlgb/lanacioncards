@@ -1,0 +1,80 @@
+.brief {
+  padding: 22px 25px 20px;
+}
+.brief-head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.round-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 31px;
+  height: 31px;
+  background: #e8f3f9;
+  color: #087bab;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.audio-label {
+  margin-left: auto;
+  color: #85929a;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.brief h2 {
+  font-family: 'Libre Caslon Display', Georgia, serif;
+  font-size: 31px;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 18px 0 10px;
+}
+.brief p {
+  font-size: 10px;
+  color: #7b8992;
+}
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 23px;
+}
+.play-button {
+  background: var(--blue);
+  color: white;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.play-button:hover {
+  background: var(--navy);
+  color: white;
+}
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex: 1;
+  height: 35px;
+  overflow: hidden;
+}
+.waveform i {
+  display: block;
+  min-width: 2px;
+  background: #afc7d6;
+  border-radius: 2px;
+}
+.waveform i:nth-child(-n + 12) {
+  background: #148dc3;
+}
+.waveform.playing i {
+  animation: wave 0.7s ease-in-out infinite alternate;
+}
+.audio-controls > span {
+  font-size: 8px;
+  color: #7890a0;
+}
