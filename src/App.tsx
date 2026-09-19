@@ -8,7 +8,8 @@ import { HomeFeed } from './components/news/HomeFeed';
 import { StoryResults } from './components/news/StoryResults';
 import { SubscriptionDialog } from './components/subscription/SubscriptionDialog';
 import { Toast } from './components/ui/Toast';
-import { stories } from './data/stories';
+import { useNews } from './hooks/useNews';
+import { NewsStatus } from './components/news/NewsStatus';
 import { useSavedStories } from './hooks/useSavedStories';
 import { useToast } from './hooks/useToast';
 import type { Section, Story } from './types/news';
@@ -23,6 +24,9 @@ export function App() {
   const [activeDialog, setActiveDialog] = useState<ActiveDialog>(null);
   const { savedIds, toggleSaved } = useSavedStories();
   const { message, showToast } = useToast();
+
+  const news = useNews();
+  const stories = news.data?.stories ?? [];
 
   const isHome = section === 'Inicio' && !query;
   const filteredStories = filterStories(stories, { section, query, savedIds });
@@ -85,8 +89,16 @@ export function App() {
         />
         <main>
           <PageHeading section={section} hasQuery={Boolean(query)} />
+          <NewsStatus
+            isLoading={news.status === 'loading'}
+            error={news.error}
+            stale={news.data?.stale ?? false}
+            updatedAt={news.data?.updatedAt}
+            onReload={news.reload}
+          />
           {isHome ? (
             <HomeFeed
+              stories={stories}
               savedIds={savedIds}
               onRead={handleRead}
               onToggleSaved={handleToggleSaved}

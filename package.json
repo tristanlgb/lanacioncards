@@ -7,18 +7,23 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "lint": "eslint src",
+    "lint": "eslint src server",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"*.{json,ts,js,html,md}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\" \"*.{json,ts,js,html,md}\"",
-    "test": "vitest run"
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"server/**/*.ts\" \"*.{json,ts,js,html,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\" \"server/**/*.ts\" \"*.{json,ts,js,html,md}\"",
+    "test": "vitest run",
+    "start": "tsx server/index.ts"
   },
   "dependencies": {
+    "fast-xml-parser": "^5.11.1",
     "lucide-react": "^0.468.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "sirv": "^3.0.2",
+    "tsx": "^4.23.13"
   },
   "devDependencies": {
+    "@types/node": "^26.6.2",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.5.0",

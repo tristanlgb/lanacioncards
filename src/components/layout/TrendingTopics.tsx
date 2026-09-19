@@ -16,7 +16,7 @@ export function TrendingTopics({ onTopicSelect }: TrendingTopicsProps) {
           {topic.label}
         </button>
       ))}
-      <span className="demo">EDICIÓN DEMO</span>
+      <span className="demo">NOTICIAS EN VIVO</span>
     </div>
   );
 }

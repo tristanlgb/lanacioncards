@@ -1,3 +1,4 @@
+import { storyImage } from '../../utils/storyImage';
 import { Bookmark, Clock3 } from 'lucide-react';
 import type { Story, StoryActions } from '../../types/news';
 
@@ -16,8 +17,12 @@ export function StoryCard({ story, hero = false, isSaved, onRead, onToggleSaved 
       >
         <div className="story-image">
           <img
-            src={`/images/${story.image}.jpg`}
-            alt={story.id === 1 ? 'Palacio del Congreso de la Nación Argentina' : story.title}
+            src={storyImage(story)}
+            onError={(event) => {
+              event.currentTarget.onerror = null;
+              event.currentTarget.src = '/images/news-placeholder.svg';
+            }}
+            alt={story.title}
             loading={hero ? 'eager' : 'lazy'}
           />
           <span className="image-shade" />
@@ -28,7 +33,7 @@ export function StoryCard({ story, hero = false, isSaved, onRead, onToggleSaved 
             {story.category}
           </span>
           <h2>
-            <span>{story.eyebrow}.</span> {story.title}
+            {story.eyebrow && <span>{story.eyebrow}.</span>} {story.title}
           </h2>
           <p>{story.description}</p>
           <div className="story-meta">
@@ -48,11 +53,7 @@ export function StoryCard({ story, hero = false, isSaved, onRead, onToggleSaved 
       >
         <Bookmark size={16} fill={isSaved ? 'currentColor' : 'none'} />
       </button>
-      {hero && (
-        <span className="hero-number">
-          01 <span>/ 07</span>
-        </span>
-      )}
+      {hero && <span className="hero-number">DESTACADA</span>}
     </article>
   );
 }

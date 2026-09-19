@@ -9,6 +9,7 @@ export const sections = [
   'Lifestyle',
   'Tecnología',
   'Cultura',
+  'Sociedad',
 ] as const satisfies readonly Section[];
 export const menuSections = [
   ...sections,

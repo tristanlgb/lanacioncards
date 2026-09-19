@@ -1,5 +1,4 @@
-import { homeStories } from '../../data/stories';
-import type { StoryActions } from '../../types/news';
+import type { Story, StoryActions } from '../../types/news';
 import { StoryCard } from './StoryCard';
 import { AudioBrief } from '../widgets/AudioBrief';
 import { ExploreCard } from '../widgets/ExploreCard';
@@ -8,14 +7,15 @@ import { NewsletterCard } from '../widgets/NewsletterCard';
 import { WeatherWidget } from '../widgets/WeatherWidget';
 
 interface HomeFeedProps extends StoryActions {
+  stories: readonly Story[];
   savedIds: readonly number[];
   onSubscribe: () => void;
   onExplore: () => void;
   onViewEconomy: () => void;
   onError: (message: string) => void;
 }
-
 export function HomeFeed({
+  stories,
   savedIds,
   onRead,
   onToggleSaved,
@@ -24,55 +24,50 @@ export function HomeFeed({
   onViewEconomy,
   onError,
 }: HomeFeedProps) {
-  const storyActions = { onRead, onToggleSaved };
+  const lead = stories[0];
+  const secondary = stories.slice(1, 10);
+  const leftColumn = secondary.filter((_, index) => index % 3 === 0);
+  const centerColumn = secondary.filter((_, index) => index % 3 === 1);
+  const rightColumn = secondary.filter((_, index) => index % 3 === 2);
+  const actions = { onRead, onToggleSaved };
+
   return (
     <div className="bento">
       <div className="lead-column">
         <WeatherWidget />
-        <StoryCard
-          {...storyActions}
-          story={homeStories.lead}
-          isSaved={savedIds.includes(homeStories.lead.id)}
-          hero
-        />
-        <AudioBrief onError={onError} />
-        <StoryCard
-          {...storyActions}
-          story={homeStories.culture}
-          isSaved={savedIds.includes(homeStories.culture.id)}
-        />
+        {lead && <StoryCard {...actions} story={lead} isSaved={savedIds.includes(lead.id)} hero />}
+        <AudioBrief stories={stories} onError={onError} />
+        {leftColumn.map((story) => (
+          <StoryCard
+            key={story.id}
+            {...actions}
+            story={story}
+            isSaved={savedIds.includes(story.id)}
+          />
+        ))}
         <NewsletterCard onSubscribe={onSubscribe} />
       </div>
       <div className="news-column">
-        <StoryCard
-          {...storyActions}
-          story={homeStories.economy}
-          isSaved={savedIds.includes(homeStories.economy.id)}
-        />
-        <StoryCard
-          {...storyActions}
-          story={homeStories.sports}
-          isSaved={savedIds.includes(homeStories.sports.id)}
-        />
+        {centerColumn.map((story) => (
+          <StoryCard
+            key={story.id}
+            {...actions}
+            story={story}
+            isSaved={savedIds.includes(story.id)}
+          />
+        ))}
         <MarketWidget onViewEconomy={onViewEconomy} />
         <ExploreCard onExplore={onExplore} />
       </div>
       <div className="news-column">
-        <StoryCard
-          {...storyActions}
-          story={homeStories.world}
-          isSaved={savedIds.includes(homeStories.world.id)}
-        />
-        <StoryCard
-          {...storyActions}
-          story={homeStories.lifestyle}
-          isSaved={savedIds.includes(homeStories.lifestyle.id)}
-        />
-        <StoryCard
-          {...storyActions}
-          story={homeStories.technology}
-          isSaved={savedIds.includes(homeStories.technology.id)}
-        />
+        {rightColumn.map((story) => (
+          <StoryCard
+            key={story.id}
+            {...actions}
+            story={story}
+            isSaved={savedIds.includes(story.id)}
+          />
+        ))}
       </div>
     </div>
   );

@@ -179,3 +179,30 @@
   color: #c0ced7;
   margin-left: 5px;
 }
+
+.news-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: -10px 0 20px;
+  color: #627c8d;
+  font-size: 11px;
+}
+.news-status button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.5;
+}
+.source-link {
+  display: block;
+  color: var(--blue);
+  margin: 20px 0;
+}
+.spinning {
+  animation: rotate 2s linear infinite;
+}

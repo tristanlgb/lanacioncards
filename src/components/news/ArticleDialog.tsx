@@ -1,3 +1,4 @@
+import { storyImage } from '../../utils/storyImage';
 import { useId } from 'react';
 import { Bookmark } from 'lucide-react';
 import type { Story } from '../../types/news';
@@ -16,11 +17,12 @@ export function ArticleDialog({ story, isSaved, onToggleSaved, onClose }: Articl
     <Dialog isOpen={story !== null} titleId={titleId} onClose={onClose}>
       {story && (
         <div className="article-detail">
-          <img src={`/images/${story.image}.jpg`} alt={story.title} />
+          <img src={storyImage(story)} alt={story.title} />
           <div className="article-body">
-            <span className="category">{story.category} · EDICIÓN DEMO</span>
+            <span className="category">{story.category} · LA NACION</span>
             <h2 id={titleId}>
-              {story.eyebrow}. {story.title}
+              {story.eyebrow ? story.eyebrow + '. ' : ''}
+              {story.title}
             </h2>
             <p className="article-lead">{story.description}</p>
             <div className="article-byline">

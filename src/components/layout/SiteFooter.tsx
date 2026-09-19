@@ -5,7 +5,7 @@ export function SiteFooter() {
     <footer>
       <span className="footer-brand">LA NACION</span>
       <span>
-        © {new Date().getFullYear()} · Prototipo de diseño. Contenido editorial de demostración.
+        © {new Date().getFullYear()} · Prototipo independiente · Noticias de fuentes públicas.
       </span>
       <a href="https://www.lanacion.com.ar/" target="_blank" rel="noreferrer">
         Visitá el sitio oficial <ArrowUpRight size={13} />

@@ -1,13 +1,6 @@
 import { Headphones, Pause, Play } from 'lucide-react';
-import { stories } from '../../data/stories';
+import type { Story } from '../../types/news';
 import { useSpeechSummary } from '../../hooks/useSpeechSummary';
-
-const SUMMARY_TEXT =
-  'Tu día, en contexto. Bienvenido a este resumen de demostración. ' +
-  stories
-    .slice(0, 3)
-    .map((story) => story.title + '. ' + story.description)
-    .join(' ');
 
 const WAVEFORM_BARS = Array.from({ length: 42 }, (_, index) => ({
   id: index,
@@ -16,11 +9,18 @@ const WAVEFORM_BARS = Array.from({ length: 42 }, (_, index) => ({
 }));
 
 interface AudioBriefProps {
+  stories: readonly Story[];
   onError: (message: string) => void;
 }
 
-export function AudioBrief({ onError }: AudioBriefProps) {
-  const { isPlaying, togglePlayback } = useSpeechSummary({ text: SUMMARY_TEXT, onError });
+export function AudioBrief({ stories, onError }: AudioBriefProps) {
+  const summaryText =
+    'Tu día, en contexto. ' +
+    stories
+      .slice(0, 3)
+      .map((story) => story.title + '. ' + story.description)
+      .join(' ');
+  const { isPlaying, togglePlayback } = useSpeechSummary({ text: summaryText, onError });
   return (
     <section className="brief card">
       <div className="brief-head">
@@ -39,6 +39,7 @@ export function AudioBrief({ onError }: AudioBriefProps) {
       <div className="audio-controls">
         <button
           className="play-button"
+          disabled={stories.length === 0}
           aria-label={isPlaying ? 'Pausar resumen' : 'Escuchar resumen'}
           onClick={togglePlayback}
         >

@@ -18,5 +18,5 @@
     "noUncheckedIndexedAccess": true,
     "verbatimModuleSyntax": true
   },
-  "include": ["src"]
+  "include": ["src", "server", "vite.config.ts"]
 }

@@ -6,7 +6,7 @@ export default tseslint.config(
   { ignores: ['dist/**', 'node_modules/**', '.browser-check/**'] },
   ...tseslint.configs.recommended,
   {
-    files: ['src/**/*.{ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}', 'server/**/*.ts'],
     plugins: { 'react-hooks': reactHooks, 'react-refresh': reactRefresh },
     rules: {
       ...reactHooks.configs.recommended.rules,
