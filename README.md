@@ -22,6 +22,20 @@ Logo: LA NACION, https://www.lanacion.com.ar/pf/resources/images/la-nacion.webp.
 
 Photo du Congrès / Foto del Congreso: Matías Profeta, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Palacio_del_Congreso_de_la_Naci%C3%B3n_Argentina.jpg · https://creativecommons.org/licenses/by-sa/4.0/. Encuadre mediante CSS, sin modificar el archivo original.
 
+## Organización del código
 
+- `src/main.tsx`: montaje de React.
+- `src/App.tsx`: composición de la página y coordinación de navegación.
+- `src/components/`: componentes de layout, noticias, widgets, suscripción y UI compartida.
+- `src/hooks/`: lógica de estado y efectos de reloj, clima, audio, guardados y notificaciones.
+- `src/services/`: acceso HTTP y almacenamiento, con validación de datos externos.
+- `src/types/`: contratos TypeScript del dominio.
+- `src/data/`: contenido y navegación.
+- `src/utils/`: funciones puras de filtrado y fechas.
+- `src/styles/`: CSS legible separado por responsabilidad.
 
-# Vercel Deploy · https://lanacioncards.vercel.app/
+## Calidad
+
+`npm run format` aplica Prettier; `npm run format:check` verifica el formato.
+`npm run lint` ejecuta ESLint y reglas de hooks; `npm run typecheck` comprueba tipos estrictos.
+`npm test` ejecuta las pruebas de datos externos y filtrado.
