@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
 import type { Category, NewsResponse, Story } from '../src/types/news';
-import { isRecord, safeHttpUrl } from '../src/utils/validation';
+import { isRecord, safeHttpUrl } from '../src/utils/validation.js';
 
 const FEED_URL = 'https://www.lanacion.com.ar/arc/outboundfeeds/rss/?outputType=xml';
 const CACHE_DURATION_MS = 5 * 60 * 1000;

@@ -26,6 +26,10 @@ Las respuestas se validan y se guardan en caché durante cinco minutos. Si el pr
 
 Para producción: Node.js 22.9 o superior, `npm run build` y `npm start` (puerto 3000 o `PORT`). Publicar únicamente `dist` en un alojamiento estático no incluye `/api/news`.
 
+### Despliegue en Vercel
+
+El repositorio incluye `api/news.ts`, una función Node.js que publica `/api/news` junto al frontend de Vite. `vercel.json` configura la compilación y permite hasta 30 segundos de ejecución para la consulta al proveedor (su timeout es de 12 segundos). No se necesita ejecutar `npm start` en Vercel. Si se utiliza GNews, configurar `GNEWS_API_KEY` en las variables del proyecto para Production y volver a desplegar; sin clave se utiliza el RSS público. La caché en memoria pertenece a cada instancia de la función y puede reiniciarse entre invocaciones.
+
 Logo: LA NACION, https://www.lanacion.com.ar/pf/resources/images/la-nacion.webp. Fotografías ilustrativas de Wikimedia Commons y Unsplash. Este prototipo no es el sitio oficial de LA NACION.
 
 Photo du Congrès / Foto del Congreso: Matías Profeta, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Palacio_del_Congreso_de_la_Naci%C3%B3n_Argentina.jpg · https://creativecommons.org/licenses/by-sa/4.0/. Encuadre mediante CSS, sin modificar el archivo original.

@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { getNews } from './newsProvider';
+import { getNews } from './newsProvider.js';
 
 export async function newsHandler(request: IncomingMessage, response: ServerResponse) {
   response.setHeader('Content-Type', 'application/json; charset=utf-8');
