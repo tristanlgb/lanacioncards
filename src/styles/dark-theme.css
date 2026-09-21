@@ -1,0 +1,214 @@
+/* Shared dark palette for every app surface, including dialogs and form controls. */
+:root {
+  scrollbar-color: #4b6178 var(--page);
+}
+::selection {
+  background: #76cefa;
+  color: var(--on-accent);
+}
+.brand img {
+  filter: brightness(0) saturate(100%) invert(91%);
+}
+.card,
+.menu-panel,
+.search-panel,
+dialog,
+.positive-feed,
+.positive-video {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow:
+    0 6px 24px #0003,
+    inset 0 0 0 1px var(--border);
+}
+.dark,
+.navigation {
+  background: var(--navy);
+}
+.navigation {
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+.weather {
+  background: linear-gradient(115deg, #17364f, #112232);
+}
+.newsletter,
+.explore {
+  background: var(--surface-accent);
+}
+.explore,
+.bottom-line button,
+.positive-caption a,
+.forecast-credit,
+.forecast-icon,
+.article-body a {
+  color: var(--blue);
+}
+.explore h3,
+.date-time > span:last-child,
+.reading-label {
+  color: var(--text);
+}
+.brand > span,
+.trending button,
+.trending .demo,
+.overline,
+.date-time,
+.date-time small,
+.bottom-line,
+footer,
+.footer-brand,
+.results-bar,
+.empty p,
+.story p,
+.story-meta,
+.dark .story-copy p,
+.dark .story-meta,
+.news-status,
+.audio-label,
+.brief p,
+.audio-controls > span,
+.newsletter p,
+.explore p,
+.market-footer,
+.weather-top > span:last-child,
+.weather-main small,
+.reading-progress p,
+.forecast-intro,
+.forecast-date span,
+.forecast-condition,
+.forecast-rain,
+.forecast-wind,
+.positive-intro,
+.positive-caption > span,
+.positive-footer,
+.article-body p,
+.article-byline,
+.subscribe-detail p,
+.subscribe-detail small {
+  color: var(--muted);
+}
+.trending,
+footer,
+.story-meta,
+.dark .story-meta,
+.explore button,
+.forecast-day,
+.article-byline {
+  border-color: var(--border);
+}
+.subscribe-button,
+.save-button,
+.dialog-close {
+  background: var(--surface-raised);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.save-button.is-saved,
+.primary-button,
+.play-button,
+.saved-top i {
+  background: var(--blue);
+  color: var(--on-accent);
+}
+.primary-button:hover,
+.play-button:hover,
+.save-button.is-saved:hover {
+  background: #a5e0ff;
+  color: var(--on-accent);
+}
+.subscribe-button:hover,
+.dialog-close:hover,
+.save-button:hover,
+.menu-panel button:hover {
+  background: #263a4f;
+  color: var(--blue);
+}
+.round-icon {
+  background: #203c50;
+  color: var(--blue);
+}
+.waveform i {
+  background: #526c83;
+}
+.waveform i:nth-child(-n + 12) {
+  background: var(--blue);
+}
+.reading-progress {
+  background: #112b3b;
+  border-color: #29485d;
+  --progress-color: #76cefa;
+}
+.reading-progress.warning {
+  background: #30271b;
+  border-color: #675030;
+  --progress-color: #f5be69;
+}
+.reading-progress.danger {
+  background: #321e27;
+  border-color: #713d49;
+  --progress-color: #ff8896;
+}
+.reading-track {
+  background: #ffffff14;
+}
+.positive-heading .round-icon {
+  background: #392536;
+  color: #ffa5c3;
+}
+.positive-scroll {
+  background: var(--page);
+  scrollbar-color: #4b6178 var(--page);
+}
+.positive-video iframe {
+  background: var(--page);
+  color-scheme: dark;
+}
+dialog::backdrop {
+  background: #030810cc;
+}
+.subscribe-detail input {
+  background: var(--page);
+  border-color: #52677c;
+  color: var(--text);
+}
+.search-panel input {
+  color: var(--text);
+  caret-color: var(--blue);
+}
+input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+input:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+.search-panel:focus-within {
+  box-shadow: inset 0 0 0 2px var(--blue);
+}
+input:autofill {
+  box-shadow: inset 0 0 0 100px var(--surface-raised);
+  -webkit-text-fill-color: var(--text);
+}
+.success-icon {
+  color: #72ddbb;
+}
+.toast {
+  background: var(--surface-raised);
+  color: var(--text);
+  border: 1px solid #52677c;
+  box-shadow: 0 8px 30px #0006;
+}
+.story:hover {
+  box-shadow:
+    0 12px 28px #0005,
+    inset 0 0 0 1px #52677c;
+}
+/* Keep the lead headline legible over its photograph. */
+.hero p {
+  color: #d3dde4;
+}
+.hero .story-meta {
+  color: #d7e2e9;
+  border-color: #ffffff26;
+}

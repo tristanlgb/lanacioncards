@@ -1,14 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap');
 :root {
   font-family: 'DM Sans', sans-serif;
-  color: #182d3e;
-  background: #f0f2f3;
+  color-scheme: dark;
+  color: var(--text);
+  background: var(--page);
   font-synthesis: none;
   font-weight: 400;
   font-size: 14px;
-  --blue: #0079b5;
-  --navy: #102b45;
-  --muted: #78828b;
+  --page: #0b1119;
+  --surface: #141e2a;
+  --surface-raised: #1b2938;
+  --surface-accent: #142b3a;
+  --border: #2c3d4f;
+  --text: #edf2f7;
+  --muted: #a6b7c7;
+  --blue: #76cefa;
+  --navy: #122536;
+  --on-accent: #071c29;
 }
 * {
   box-sizing: border-box;
