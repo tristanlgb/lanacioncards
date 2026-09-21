@@ -16,7 +16,15 @@ npm run build
 npm run preview
 ```
 
-Incluye búsqueda, filtros por sección, guardados persistentes en localStorage, modal de lectura, resumen mediante Speech Synthesis, reloj de Buenos Aires y clima de Open-Meteo con fallback de demostración. El formulario de suscripción es local y no envía datos. Noticias y cotizaciones son ilustrativas; no existe integración con un servicio editorial ni de pagos.
+Incluye búsqueda, filtros por sección, guardados persistentes, modal con enlace a la noticia original, resumen mediante Speech Synthesis y reloj de Buenos Aires. El clima de Open-Meteo muestra los próximos siete días con máximas, mínimas, probabilidad de lluvia y viento. La card de TikTok contiene una selección de videos positivos con desplazamiento automático, pausa y respeto por la preferencia de movimiento reducido. La barra de lecturas indica cuántas quedan de diez, pasa a naranja desde cinco y a rojo desde ocho; el historial es local y se renueva cada día en horario de Buenos Aires. El formulario de suscripción es local; cotizaciones y pagos no están conectados.
+
+## Noticias mediante GNews
+
+Las cards consumen `/api/news` desde el servidor. Para activar GNews, copiá `.env.example` a `.env`, completá `GNEWS_API_KEY` con tu clave y reiniciá el servidor. La clave no se incluye en el frontend. La integración usa [Top Headlines de GNews](https://docs.gnews.io/endpoints/top-headlines-endpoint), en español y para Argentina, con diez titulares por consulta. Sin clave se utiliza el RSS público de LA NACION, identificado en pantalla.
+
+Las respuestas se validan y se guardan en caché durante cinco minutos. Si el proveedor falla se conserva la última respuesta hasta una hora, marcada como desactualizada; sin caché se muestra un error y la opción de reintentar. Los videos de TikTok dependen de la disponibilidad y permisos del servicio; cada uno incluye un enlace directo alternativo.
+
+Para producción: Node.js 22.9 o superior, `npm run build` y `npm start` (puerto 3000 o `PORT`). Publicar únicamente `dist` en un alojamiento estático no incluye `/api/news`.
 
 Logo: LA NACION, https://www.lanacion.com.ar/pf/resources/images/la-nacion.webp. Fotografías ilustrativas de Wikimedia Commons y Unsplash. Este prototipo no es el sitio oficial de LA NACION.
 

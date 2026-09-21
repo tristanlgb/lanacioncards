@@ -5,11 +5,19 @@ interface NewsStatusProps {
   error: string | null;
   stale: boolean;
   updatedAt?: string;
+  source?: string;
   onReload: () => void;
 }
 
-export function NewsStatus({ isLoading, error, stale, updatedAt, onReload }: NewsStatusProps) {
-  let message = 'Noticias de LA NACION · fuente pública';
+export function NewsStatus({
+  isLoading,
+  error,
+  stale,
+  updatedAt,
+  source,
+  onReload,
+}: NewsStatusProps) {
+  let message = source ?? 'Noticias en vivo';
   if (isLoading) message = 'Actualizando las noticias…';
   else if (error) message = error;
   else if (stale) message = 'Mostrando la última actualización disponible.';

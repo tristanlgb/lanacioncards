@@ -19,7 +19,9 @@ export function ArticleDialog({ story, isSaved, onToggleSaved, onClose }: Articl
         <div className="article-detail">
           <img src={storyImage(story)} alt={story.title} />
           <div className="article-body">
-            <span className="category">{story.category} · LA NACION</span>
+            <span className="category">
+              {story.category} · {story.author}
+            </span>
             <h2 id={titleId}>
               {story.eyebrow ? story.eyebrow + '. ' : ''}
               {story.title}
@@ -28,15 +30,13 @@ export function ArticleDialog({ story, isSaved, onToggleSaved, onClose }: Articl
             <div className="article-byline">
               Por {story.author} · {story.minutes} min de lectura
             </div>
-            <p>
-              Hay historias que invitan a mirar más allá de los titulares. Esta selección propone
-              detenerse en los cambios, descubrir nuevas perspectivas y encontrar las preguntas que
-              ayudan a comprender nuestro tiempo.
-            </p>
-            <p>
-              Esta nota forma parte de un prototipo visual: el contenido es ilustrativo y no
-              corresponde a una noticia publicada por LA NACION.
-            </p>
+            {story.sourceUrl && (
+              <p>
+                <a href={story.sourceUrl} target="_blank" rel="noreferrer">
+                  Leer la nota completa en el medio original ↗
+                </a>
+              </p>
+            )}
             <button className="primary-button" onClick={() => onToggleSaved(story.id)}>
               <Bookmark size={16} />
               {isSaved ? 'Quitar de mis guardados' : 'Guardar para después'}

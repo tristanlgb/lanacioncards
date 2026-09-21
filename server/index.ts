@@ -2,6 +2,10 @@ import { createServer } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import sirv from 'sirv';
 import { newsHandler } from './newsHandler';
+import { existsSync } from 'node:fs';
+import { loadEnvFile } from 'node:process';
+
+if (existsSync('.env')) loadEnvFile('.env');
 
 const serveStatic = sirv(fileURLToPath(new URL('../dist', import.meta.url)), { single: true });
 const port = Number(process.env.PORT ?? 3000);

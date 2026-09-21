@@ -80,7 +80,59 @@ export function parseNewsFeed(xml: string): Story[] {
   return stories.slice(0, 60);
 }
 
+export function parseGNewsResponse(payload: unknown): Story[] {
+  if (!isRecord(payload) || !Array.isArray(payload.articles)) {
+    throw new Error('GNews devolvió una respuesta inválida.');
+  }
+  const stories: Story[] = [];
+  const seen = new Set<string>();
+  for (const item of payload.articles) {
+    if (!isRecord(item)) continue;
+    const sourceUrl = safeHttpUrl(item.url);
+    const title = text(item.title);
+    if (!sourceUrl || !title || seen.has(sourceUrl)) continue;
+    seen.add(sourceUrl);
+    const date = new Date(text(item.publishedAt));
+    const category = categoryFor(title, sourceUrl);
+    stories.push({
+      id: Number.parseInt(createHash('sha256').update(sourceUrl).digest('hex').slice(0, 12), 16),
+      category,
+      eyebrow: '',
+      title,
+      description: text(item.description).slice(0, 350),
+      image: safeHttpUrl(item.image) ?? '/images/news-placeholder.svg',
+      minutes: Math.max(1, Math.ceil(text(item.content).split(/\s+/).length / 220)),
+      author: isRecord(item.source) ? text(item.source.name) || 'GNews' : 'GNews',
+      sourceUrl,
+      dark: category === 'El mundo' || category === 'Tecnología',
+      ...(Number.isNaN(date.getTime()) ? {} : { publishedAt: date.toISOString() }),
+    });
+  }
+  if (!stories.length) throw new Error('GNews no devolvió noticias válidas.');
+  return stories.slice(0, 60);
+}
+
 async function refreshNews(): Promise<NewsResponse> {
+  const apiKey = process.env.GNEWS_API_KEY?.trim();
+  if (apiKey) {
+    const url = new URL('https://gnews.io/api/v4/top-headlines');
+    url.search = new URLSearchParams({
+      apikey: apiKey,
+      lang: 'es',
+      country: 'ar',
+      max: '10',
+      category: 'general',
+    }).toString();
+    const response = await fetch(url, { signal: AbortSignal.timeout(12000) });
+    if (!response.ok) throw new Error('GNews no está disponible.');
+    cache = {
+      stories: parseGNewsResponse(await response.json()),
+      updatedAt: new Date().toISOString(),
+      stale: false,
+      source: 'GNews · titulares de Argentina',
+    };
+    return cache;
+  }
   const response = await fetch(FEED_URL, {
     signal: AbortSignal.timeout(12000),
     headers: { Accept: 'application/rss+xml, application/xml', 'User-Agent': 'LaNacionCards/1.0' },

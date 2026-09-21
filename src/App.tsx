@@ -1,3 +1,6 @@
+import { ReadingProgress } from './components/reading/ReadingProgress';
+import { ReadingLimitDialog } from './components/reading/ReadingLimitDialog';
+import { useReadingProgress } from './hooks/useReadingProgress';
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { PageHeading } from './components/layout/PageHeading';
@@ -15,7 +18,8 @@ import { useToast } from './hooks/useToast';
 import type { Section, Story } from './types/news';
 import { filterStories } from './utils/filterStories';
 
-type ActiveDialog = { type: 'article'; story: Story } | { type: 'subscription' } | null;
+type ActiveDialog =
+  { type: 'article'; story: Story } | { type: 'subscription' } | { type: 'reading-limit' } | null;
 
 export function App() {
   const [section, setSection] = useState<Section>('Inicio');
@@ -25,6 +29,7 @@ export function App() {
   const { savedIds, toggleSaved } = useSavedStories();
   const { message, showToast } = useToast();
 
+  const reading = useReadingProgress();
   const news = useNews();
   const stories = news.data?.stories ?? [];
 
@@ -57,6 +62,10 @@ export function App() {
   }
 
   function handleRead(story: Story) {
+    if (!reading.tryRead(story.id)) {
+      setActiveDialog({ type: 'reading-limit' });
+      return;
+    }
     setActiveDialog({ type: 'article', story });
   }
 
@@ -94,7 +103,13 @@ export function App() {
             error={news.error}
             stale={news.data?.stale ?? false}
             updatedAt={news.data?.updatedAt}
+            source={news.data?.source}
             onReload={news.reload}
+          />
+          <ReadingProgress
+            readCount={reading.readCount}
+            remaining={reading.remaining}
+            limit={reading.limit}
           />
           {isHome ? (
             <HomeFeed
@@ -141,6 +156,10 @@ export function App() {
       />
       <SubscriptionDialog
         isOpen={activeDialog?.type === 'subscription'}
+        onClose={handleCloseDialog}
+      />
+      <ReadingLimitDialog
+        isOpen={activeDialog?.type === 'reading-limit'}
         onClose={handleCloseDialog}
       />
       <Toast message={message} />

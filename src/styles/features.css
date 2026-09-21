@@ -1,0 +1,231 @@
+.reading-progress {
+  margin: 0 0 26px;
+  padding: 18px 22px;
+  background: #e4eef4;
+  border: 1px solid #d3e2ec;
+  border-radius: 12px;
+  --progress-color: #1686b7;
+}
+.reading-progress.warning {
+  --progress-color: #d68b20;
+  background: #fff6e9;
+  border-color: #f0dfc0;
+}
+.reading-progress.danger {
+  --progress-color: #d84848;
+  background: #fff0f0;
+  border-color: #f1d0d0;
+}
+.reading-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  color: #4c6476;
+}
+.reading-label > svg,
+.reading-count {
+  color: var(--progress-color);
+}
+.reading-count {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 700;
+}
+.reading-track {
+  height: 7px;
+  margin: 12px 0 8px;
+  background: #ffffffc9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.reading-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--progress-color);
+  transition:
+    width 0.5s ease,
+    background 0.5s ease;
+}
+.reading-progress p {
+  font-size: 10px;
+  margin: 0;
+  color: #708392;
+}
+.forecast-dialog {
+  padding: 38px 28px;
+}
+.forecast-dialog h2 {
+  font:
+    38px 'Libre Caslon Display',
+    Georgia,
+    serif;
+  margin: 15px 0 8px;
+}
+.forecast-intro {
+  font-size: 12px;
+  color: #728998;
+  margin-bottom: 24px;
+}
+.forecast-list {
+  display: flex;
+  flex-direction: column;
+}
+.forecast-day {
+  display: grid;
+  grid-template-columns: 90px 30px 1fr 64px 50px 72px;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e7edf2;
+  font-size: 11px;
+}
+.forecast-date {
+  text-transform: capitalize;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.forecast-date span,
+.forecast-condition {
+  color: #77909e;
+}
+.forecast-icon {
+  color: #2188b8;
+}
+.forecast-rain,
+.forecast-wind {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #718e9f;
+  font-size: 10px;
+}
+.forecast-credit {
+  display: block;
+  margin-top: 22px;
+  font-size: 10px;
+  color: #68899c;
+}
+.positive-feed {
+  background: #fff;
+}
+.positive-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 18px 0;
+}
+.positive-heading .round-icon {
+  background: #fce8ec;
+  color: #d86a85;
+}
+.positive-heading .category {
+  font-size: 7px;
+  letter-spacing: 1px;
+}
+.positive-heading h2 {
+  font:
+    24px/1.1 'Libre Caslon Display',
+    Georgia,
+    serif;
+  margin: 6px 0 0;
+}
+.positive-heading > button {
+  margin-left: auto;
+  padding: 5px;
+  display: flex;
+}
+.positive-intro {
+  font-size: 10px;
+  color: #78909e;
+  margin: 12px 18px 18px;
+}
+.positive-scroll {
+  height: 450px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #bfd4e1 #f0f5f8;
+  background: #ecf2f5;
+}
+.positive-video {
+  margin: 0 10px 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+}
+.positive-video iframe {
+  width: 100%;
+  height: 385px;
+  border: 0;
+  display: block;
+  background: #102b45;
+}
+.positive-caption {
+  padding: 15px;
+}
+.positive-caption > span {
+  color: #7a92a0;
+  font-size: 9px;
+}
+.positive-caption h3 {
+  font:
+    22px/1.2 'Libre Caslon Display',
+    Georgia,
+    serif;
+  margin: 8px 0 14px;
+}
+.positive-caption > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.positive-caption a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: #0079b5;
+}
+.positive-footer {
+  padding: 14px 18px;
+  margin: 0;
+  font-size: 9px;
+  line-height: 1.7;
+  color: #77909e;
+}
+@media (max-width: 700px) {
+  .forecast-day {
+    grid-template-columns: 75px 28px 1fr 60px;
+    gap: 8px;
+  }
+  .forecast-rain {
+    grid-column: 2/4;
+  }
+  .forecast-wind {
+    grid-column: 4;
+  }
+}
+@media (max-width: 560px) {
+  .reading-progress {
+    padding: 15px;
+  }
+  .reading-label {
+    flex-wrap: wrap;
+    font-size: 11px;
+  }
+  .reading-count {
+    margin-left: 26px;
+  }
+  .positive-feed {
+    order: 4;
+    width: 100%;
+  }
+  .forecast-dialog {
+    padding: 38px 22px 24px;
+  }
+  .forecast-dialog h2 {
+    font-size: 32px;
+  }
+}

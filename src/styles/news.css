@@ -206,3 +206,16 @@ button:disabled {
 .spinning {
   animation: rotate 2s linear infinite;
 }
+
+.hero h2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hero p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

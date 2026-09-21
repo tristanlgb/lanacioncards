@@ -1,3 +1,4 @@
+import { PositiveTikTokFeed } from '../widgets/PositiveTikTokFeed';
 import type { Story, StoryActions } from '../../types/news';
 import { StoryCard } from './StoryCard';
 import { AudioBrief } from '../widgets/AudioBrief';
@@ -60,6 +61,7 @@ export function HomeFeed({
         <ExploreCard onExplore={onExplore} />
       </div>
       <div className="news-column">
+        <PositiveTikTokFeed />
         {rightColumn.map((story) => (
           <StoryCard
             key={story.id}
